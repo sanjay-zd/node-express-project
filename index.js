@@ -13,7 +13,8 @@ dotenv.config();
 let PORT = process.env.PORT || 5000;
 
 app.use(express.json())
-app.use("/api/contacts", require('./Routes/contactRoute'))
+app.use("/api/contacts", require('./Routes/contactRoute'));
+app.use("/api/users", require('./Routes/userRouter'));
 app.use(errorHandler)
 
 app.listen(PORT, () => {

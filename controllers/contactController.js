@@ -3,7 +3,7 @@ const Contact = require('../models/contactModel')
 
 // Get all the contacts
 const getContacts = asyncHandler(async (req, res) => {
-  const contacts = await Contact.find()
+  const contacts = await Contact.find({user_id: req.user.id});
   console.log(contacts);
   res.status(200).json(contacts);
 });
@@ -20,7 +20,8 @@ const createContact = asyncHandler(async (req, res) => {
   const contact = await Contact.create({
     name,
     email,
-    phone
+    phone,
+    user_id: req.user.id
   })
   res.status(201).json(contact);
 });
